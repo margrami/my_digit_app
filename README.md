@@ -1,23 +1,38 @@
-My Digit App, performs handwriting digit recognition. 
-In the first version of this app, the TF model was loaded at the beginning of the main.py using the function load_model (see the code). This version uses Tensorflow serving to load the model and perform the prediction.
+# My Digit App
 
-TensorFlow Serving with Docker
+This app performs handwriting digit recognition using a ConvNET model. 
 
-- This is the easiest way. it just needs to pull the image as:
+In the first version of this app, the TF model was loaded at the beginning of the main.py file, using the function load_model (see the code). 
 
-docker pull tensorflow/serving 
+This version uses Tensorflow serving to load the model and perform the prediction. This offers several advantages as mode efficient model inference given the model inference using web apps built with Flask/Django are usually inefficient. 
+
+# TensorFlow Serving with Docker
+
+This is the easiest way. it just needs to have docker desktop running and pull the image as:
+
+
+- docker pull tensorflow/serving 
+
 (to use with CPU only)
 
-- Start TensorFlow Serving container and open the REST API port
+# Start TensorFlow Serving container and open the REST API port
 
-This is the command to start TF Serving if as me your are using a windows version of docker:
+This is the command to start TF Serving if as me, your are using a windows version of docker:
 
-docker run -p 8501:8501 --name tfserv_two --mount type=bind,source=$(PWD)/static/handwriting_model_convnet/,target=/models/img_classifier -e TF_CPP_VMODULE=http_server=1 -e  MODEL_NAME=img_classifier -t tensorflow/serving
+- docker run -p 8501:8501 --name tfserv_two --mount type=bind,source=$(PWD)/static/handwriting_model_convnet/,target=/models/img_classifier -e TF_CPP_VMODULE=http_server=1 -e  MODEL_NAME=img_classifier -t tensorflow/serving
 
-the command :
-TF_CPP_VMODULE=http_server=1 is to activate the logs.
+some info about the command's options:
+- TF_CPP_VMODULE=http_server=1             , is to activate the logs.
 
-Once the container TFserv_two is up  my_digit_app can make REST requests. 
-to run the app 
+- target=/models/img_classifier            ,is the model's directory in docker. 
 
-python main.py
+- --name tfserv_two                        ,it's better to include a name in order to identifier the container. 
+
+Once the container TFserv_two is up, my_digit_app can make REST requests. 
+
+# To run the app 
+
+- python main.py
+
+# other useful info:
+https://github.com/tensorflow/serving/blob/master/tensorflow_serving/g3doc/building_with_docker.md
