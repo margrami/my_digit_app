@@ -6,7 +6,7 @@ In the first version of this app, the TF model was loaded at the beginning of th
 
 This version uses Tensorflow serving to load the model and perform the prediction. This offers several advantages as mode efficient model inference.
 
-Used in bootcamp #2.
+Used in bootcamp #2. 
 
 # TensorFlow Serving with Docker
 
