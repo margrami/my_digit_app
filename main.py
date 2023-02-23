@@ -28,6 +28,10 @@ url = 'http://localhost:8501/v1/models/img_classifier:predict'
 
 
 def make_prediction(instances):
+    '''
+    Permits to interact with TensorFlow serving.
+    '''
+    
     data = json.dumps({"signature_name": "serving_default",
                       "instances": instances.tolist()})
     headers = {"content-type": "application/json"}
