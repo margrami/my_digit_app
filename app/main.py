@@ -8,14 +8,14 @@ import requests
 
 # all ML stuff
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
 
 # initialize flask application
 app = Flask(__name__)
 HOST = '0.0.0.0'
-PORT = 8888
+PORT = 8080
 
 ''' 
 to upload the model without Tensorflow Serving
@@ -24,7 +24,7 @@ model = tf.keras.models.load_model('static/handwriting_model_convnet')
 
 '''
 
-url = 'http://localhost:8501/v1/models/img_classifier:predict'
+url = 'http://tensorflow-serving:8501/v1/models/img_classifier:predict'
 
 
 def make_prediction(instances):
