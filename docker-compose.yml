@@ -1,0 +1,19 @@
+services:
+  tensorflow-serving:
+    image: tensorflow/serving
+    ports:
+      - "8501:8501"
+      - "8500:8500"
+    volumes:
+      - ./static/handwriting_model_convnet/:/models/img_classifier/
+    command:
+      - "tensorflow_model_server"
+      - "--model_name=img_classifier"
+      - "--model_base_path=/models/img_classifier"
+
+  flask_server:
+    image: buuti1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - tensorflow-serving
