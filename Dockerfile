@@ -13,4 +13,3 @@ COPY ./app/ /app
 
 CMD python main.py --reload
 
-

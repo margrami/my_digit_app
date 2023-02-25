@@ -46,3 +46,14 @@ and then follow the link to open the web app.
 
 # other useful info:
 https://github.com/tensorflow/serving/blob/master/tensorflow_serving/g3doc/building_with_docker.md
+
+
+# To run this app as a container network 
+
+check the docker-compose.yml
+
+```bash
+
+docker-composer up
+
+```
